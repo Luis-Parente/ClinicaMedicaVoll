@@ -7,11 +7,11 @@ public class BuscarAtendentePorLogin {
 
     private final RepositorioDeAtendente repositorio;
 
-    public BuscarAtendentePorLogin(RepositorioDeAtendente repositorio){
+    public BuscarAtendentePorLogin(RepositorioDeAtendente repositorio) {
         this.repositorio = repositorio;
     }
 
-    public Atendente findByLogin(String login){
+    public Atendente findByLogin(String login) {
         return repositorio.buscarAtendentePorLogin(login);
     }
 }

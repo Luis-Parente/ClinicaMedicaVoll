@@ -7,11 +7,11 @@ public class AtualizarCadastroAtendente {
 
     private final RepositorioDeAtendente repositorio;
 
-    public AtualizarCadastroAtendente(RepositorioDeAtendente repositorio){
+    public AtualizarCadastroAtendente(RepositorioDeAtendente repositorio) {
         this.repositorio = repositorio;
     }
 
-    public Atendente atualizarDadosAtendente(Atendente atendente){
+    public Atendente atualizarDadosAtendente(Atendente atendente) {
         return repositorio.atualizarCadastroAtendente(atendente);
     }
 }

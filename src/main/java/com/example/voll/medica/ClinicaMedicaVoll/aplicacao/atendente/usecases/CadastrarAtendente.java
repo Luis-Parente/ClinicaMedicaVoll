@@ -7,11 +7,11 @@ public class CadastrarAtendente {
 
     private final RepositorioDeAtendente repositorio;
 
-    public CadastrarAtendente(RepositorioDeAtendente repositorio){
+    public CadastrarAtendente(RepositorioDeAtendente repositorio) {
         this.repositorio = repositorio;
     }
 
-    public Atendente cadastrarNovoAtendente(Atendente atendente){
+    public Atendente cadastrarNovoAtendente(Atendente atendente) {
         return repositorio.cadastrarAtendente(atendente);
     }
 }

@@ -1,7 +1,5 @@
 package com.example.voll.medica.ClinicaMedicaVoll.dominio.consulta;
 
-import org.springframework.cglib.core.Local;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -25,8 +23,8 @@ public class Consulta {
             throw new IllegalArgumentException("CPF no formato incorreto!");
         }
 
-        if(LocalDateTime.now().isAfter(dataEHora)){
-            throw  new IllegalArgumentException("A consulta deve ser agendada numa data futura");
+        if (LocalDateTime.now().isAfter(dataEHora)) {
+            throw new IllegalArgumentException("A consulta deve ser agendada numa data futura!");
         }
 
         this.uuid = UUID.randomUUID();

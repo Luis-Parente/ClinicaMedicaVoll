@@ -68,6 +68,14 @@ public class Endereco {
         this.cep = cep;
     }
 
+    public Boolean enderecoValido() {
+        return logradouro == null || logradouro.isBlank()
+                || numero == null
+                || cidade == null || cidade.isBlank()
+                || uf == null || uf.isBlank()
+                || cep == null || cep.isBlank();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

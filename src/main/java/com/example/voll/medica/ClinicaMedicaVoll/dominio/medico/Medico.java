@@ -22,12 +22,20 @@ public class Medico {
             throw new IllegalArgumentException("CRM no formato incorreto!");
         }
 
-        if(nome == null || nome.isBlank()){
-            throw new IllegalArgumentException("Nome deve ser preenchido");
+        if (nome == null || nome.isBlank()) {
+            throw new IllegalArgumentException("Nome deve ser preenchido!");
         }
 
-        if(email == null || email.isBlank()){
-            throw new IllegalArgumentException("E-mail deve ser preenchido");
+        if (email == null || email.isBlank()) {
+            throw new IllegalArgumentException("E-mail deve ser preenchido!");
+        }
+
+        if (especialidade == null) {
+            throw new IllegalArgumentException("Especialidade deve ser preenchida!");
+        }
+
+        if (endereco == null || endereco.enderecoValido()) {
+            throw new IllegalArgumentException("Endereco do medico está incompleto!");
         }
 
         this.crm = crm;
@@ -91,11 +99,11 @@ public class Medico {
         return ativo;
     }
 
-    public void desativarCadastro(){
+    public void desativarCadastro() {
         this.ativo = false;
     }
 
-    public void reativarCadastro(){
+    public void reativarCadastro() {
         this.ativo = true;
     }
 

@@ -15,19 +15,19 @@ public class Atendente {
     public Atendente(String nome, String email, String login, String senha) {
 
         if(nome == null || nome.isBlank()){
-            throw new IllegalArgumentException("Nome deve ser preenchido");
+            throw new IllegalArgumentException("Nome deve ser preenchido!");
         }
 
         if(email == null || email.isBlank()){
-            throw new IllegalArgumentException("E-mail deve ser preenchido");
+            throw new IllegalArgumentException("E-mail deve ser preenchido!");
         }
 
         if(login == null || login.isBlank()){
-            throw new IllegalArgumentException("Login deve ser preenchido");
+            throw new IllegalArgumentException("Login deve ser preenchido!");
         }
 
         if(senha == null || senha.isBlank()){
-            throw new IllegalArgumentException("Senha deve ser preenchido");
+            throw new IllegalArgumentException("Senha deve ser preenchida!");
         }
 
         this.uuid = UUID.randomUUID();

@@ -20,11 +20,15 @@ public class Paciente {
         }
 
         if (nome == null || nome.isBlank()) {
-            throw new IllegalArgumentException("Nome deve ser preenchido");
+            throw new IllegalArgumentException("Nome deve ser preenchido!");
         }
 
         if (email == null || email.isBlank()) {
-            throw new IllegalArgumentException("E-mail deve ser preenchido");
+            throw new IllegalArgumentException("E-mail deve ser preenchido!");
+        }
+
+        if (endereco == null || endereco.enderecoValido()) {
+            throw new IllegalArgumentException("Endereco do paciente está incompleto!");
         }
 
         this.cpf = cpf;

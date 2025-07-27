@@ -6,7 +6,7 @@ public interface RepositorioDeAtendente {
 
     Atendente cadastrarAtendente(Atendente atendente);
 
-    Atendente filtrarAtendentePorLogin(String login);
+    Atendente filtrarAtendentePorEmail(String email);
 
     Atendente filtrarAtendentePorUuid(String uuid);
 

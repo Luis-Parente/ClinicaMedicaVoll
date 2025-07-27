@@ -9,10 +9,9 @@ public class Atendente {
 
     private String nome;
     private String email;
-    private String login;
     private String senha;
 
-    public Atendente(String nome, String email, String login, String senha) {
+    public Atendente(String nome, String email, String senha) {
 
         if(nome == null || nome.isBlank()){
             throw new IllegalArgumentException("Nome deve ser preenchido!");
@@ -22,10 +21,6 @@ public class Atendente {
             throw new IllegalArgumentException("E-mail deve ser preenchido!");
         }
 
-        if(login == null || login.isBlank()){
-            throw new IllegalArgumentException("Login deve ser preenchido!");
-        }
-
         if(senha == null || senha.isBlank()){
             throw new IllegalArgumentException("Senha deve ser preenchida!");
         }
@@ -33,7 +28,6 @@ public class Atendente {
         this.uuid = UUID.randomUUID();
         this.nome = nome;
         this.email = email;
-        this.login = login;
         this.senha = senha;
     }
 
@@ -55,14 +49,6 @@ public class Atendente {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getSenha() {

@@ -1,7 +1,6 @@
 package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.consulta.usecases;
 
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.consulta.gateway.RepositorioDeConsulta;
-import com.example.voll.medica.ClinicaMedicaVoll.dominio.consulta.Consulta;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.consulta.StatusConsulta;
 
 public class CancelarConsulta {
@@ -12,7 +11,7 @@ public class CancelarConsulta {
         this.repositorio = repositorio;
     }
 
-    public Consulta cancelarConsultaPorUuid(StatusConsulta motivoCancelamento, String uuid) {
-        repositorio.cancelarConsulta(motivoCancelamento, uuid);
+    public void cancelarConsultaPorUuid(String uuid, StatusConsulta motivoCancelamento) {
+        repositorio.cancelarConsulta(uuid, motivoCancelamento);
     }
 }

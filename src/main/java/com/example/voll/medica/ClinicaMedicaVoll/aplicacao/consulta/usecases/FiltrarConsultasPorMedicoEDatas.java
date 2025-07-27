@@ -14,8 +14,7 @@ public class FiltrarConsultasPorMedicoEDatas {
         this.repositorio = repositorio;
     }
 
-    public List<Consulta> listarConsultasPorCrmMedicoEDatas(String crmMedico, LocalDate dataInicial,
-                                                            LocalDate dataFinal) {
+    public List<Consulta> listarConsultasPorCrmMedicoEDatas(String crmMedico, LocalDate dataInicial, LocalDate dataFinal) {
         return repositorio.filtrarConsultasPorMedicoEDatas(crmMedico, dataInicial, dataFinal);
     }
 }

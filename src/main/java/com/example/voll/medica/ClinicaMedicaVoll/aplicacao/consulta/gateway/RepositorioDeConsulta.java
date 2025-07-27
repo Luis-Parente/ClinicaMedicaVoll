@@ -10,7 +10,9 @@ public interface RepositorioDeConsulta {
 
     Consulta agendarConsulta(Consulta consulta);
 
-    Consulta cancelarConsulta(StatusConsulta motivoCancelamento, String uuid);
+    void cancelarConsulta(String uuid, StatusConsulta motivoCancelamento);
+
+    Consulta filtrarConsultaPorUuid(String uuid);
 
     List<Consulta> filtrarConsultasPorPaciente(String cpfPaciente);
 

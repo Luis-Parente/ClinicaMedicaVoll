@@ -6,9 +6,11 @@ public interface RepositorioDeAtendente {
 
     Atendente cadastrarAtendente(Atendente atendente);
 
-    Atendente buscarAtendentePorLogin(String login);
+    Atendente filtrarAtendentePorLogin(String login);
 
-    Atendente atualizarCadastroAtendente(Atendente atendente);
+    Atendente filtrarAtendentePorUuid(String uuid);
+
+    Atendente atualizarCadastroAtendente(String uuid, Atendente atendente);
 
     void deletarAtendentePorUuid(String uuid);
 }

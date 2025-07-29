@@ -6,11 +6,15 @@ public class DesativarCadastroMedico {
 
     private final RepositorioDeMedico repositorio;
 
-    public DesativarCadastroMedico(RepositorioDeMedico repositorio) {
+    private final FiltrarMedicosPorCrm buscarMedico;
+
+    public DesativarCadastroMedico(RepositorioDeMedico repositorio, FiltrarMedicosPorCrm buscarMedico) {
         this.repositorio = repositorio;
+        this.buscarMedico = buscarMedico;
     }
 
     public void desativarMedico(String crm) {
+        buscarMedico.findByCrm(crm);
         repositorio.desativarCadastroMedico(crm);
     }
 }

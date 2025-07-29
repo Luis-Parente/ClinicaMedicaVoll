@@ -7,11 +7,15 @@ public class AtualizarCadastroMedico {
 
     private final RepositorioDeMedico repositorio;
 
-    public AtualizarCadastroMedico(RepositorioDeMedico repositorio) {
+    private final FiltrarMedicosPorCrm buscarMedico;
+
+    public AtualizarCadastroMedico(RepositorioDeMedico repositorio, FiltrarMedicosPorCrm buscarMedico) {
         this.repositorio = repositorio;
+        this.buscarMedico = buscarMedico;
     }
 
     public Medico atualizarDadosMedico(String crm, Medico medico) {
+        buscarMedico.findByCrm(crm);
         return repositorio.atualizarCadastroMedico(crm, medico);
     }
 }

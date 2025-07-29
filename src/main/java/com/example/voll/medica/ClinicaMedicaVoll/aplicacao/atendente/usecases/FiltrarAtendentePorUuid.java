@@ -1,6 +1,7 @@
 package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases;
 
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.gateway.RepositorioDeAtendente;
+import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.excecao.EntidadeNaoEncontradoExcecao;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.atendente.Atendente;
 
 public class FiltrarAtendentePorUuid {
@@ -11,7 +12,8 @@ public class FiltrarAtendentePorUuid {
         this.repositorio = repositorio;
     }
 
-    public Atendente findByLogin(String uuid) {
-        return repositorio.filtrarAtendentePorUuid(uuid);
+    public Atendente findByUuid(String uuid) {
+        return repositorio.filtrarAtendentePorUuid(uuid)
+                .orElseThrow(() -> new EntidadeNaoEncontradoExcecao("Atendente não encontrado!"));
     }
 }

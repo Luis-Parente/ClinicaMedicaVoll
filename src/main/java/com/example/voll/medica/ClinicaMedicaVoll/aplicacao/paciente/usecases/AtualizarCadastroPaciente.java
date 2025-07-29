@@ -7,11 +7,15 @@ public class AtualizarCadastroPaciente {
 
     private final RepositorioDePaciente repositorio;
 
-    public AtualizarCadastroPaciente(RepositorioDePaciente repositorio) {
+    private final FiltrarPacientePorCpf buscarPaciente;
+
+    public AtualizarCadastroPaciente(RepositorioDePaciente repositorio, FiltrarPacientePorCpf buscarPaciente) {
         this.repositorio = repositorio;
+        this.buscarPaciente = buscarPaciente;
     }
 
     public Paciente atualizarDadosPaciente(String cpf, Paciente paciente) {
+        buscarPaciente.findByCpf(cpf);
         return repositorio.atualizarCadastroPaciente(cpf, paciente);
     }
 }

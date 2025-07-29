@@ -6,11 +6,15 @@ public class DeletarAtendentePorUuid {
 
     private final RepositorioDeAtendente repositorio;
 
-    public DeletarAtendentePorUuid(RepositorioDeAtendente repositorio) {
+    private final FiltrarAtendentePorUuid buscarAtendente;
+
+    public DeletarAtendentePorUuid(RepositorioDeAtendente repositorio, FiltrarAtendentePorUuid buscarAtendente) {
         this.repositorio = repositorio;
+        this.buscarAtendente = buscarAtendente;
     }
 
     public void deletarAtendente(String uuid) {
+        buscarAtendente.findByUuid(uuid);
         repositorio.deletarAtendentePorUuid(uuid);
     }
 }

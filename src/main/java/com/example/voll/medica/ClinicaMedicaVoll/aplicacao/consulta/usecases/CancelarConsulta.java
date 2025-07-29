@@ -7,11 +7,15 @@ public class CancelarConsulta {
 
     private final RepositorioDeConsulta repositorio;
 
-    public CancelarConsulta(RepositorioDeConsulta repositorio) {
+    private final FiltrarConsultasPorUuid buscarConsulta;
+
+    public CancelarConsulta(RepositorioDeConsulta repositorio, FiltrarConsultasPorUuid buscarConsulta) {
         this.repositorio = repositorio;
+        this.buscarConsulta = buscarConsulta;
     }
 
     public void cancelarConsultaPorUuid(String uuid, StatusConsulta motivoCancelamento) {
+        buscarConsulta.findByUuid(uuid);
         repositorio.cancelarConsulta(uuid, motivoCancelamento);
     }
 }

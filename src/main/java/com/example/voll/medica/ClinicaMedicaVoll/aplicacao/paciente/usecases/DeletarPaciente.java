@@ -6,11 +6,15 @@ public class DeletarPaciente {
 
     private final RepositorioDePaciente repositorio;
 
-    public DeletarPaciente(RepositorioDePaciente repositorio) {
+    private final FiltrarPacientePorCpf buscarPaciente;
+
+    public DeletarPaciente(RepositorioDePaciente repositorio, FiltrarPacientePorCpf buscarPaciente) {
         this.repositorio = repositorio;
+        this.buscarPaciente = buscarPaciente;
     }
 
     public void deletarPacientePorCpf(String cpf) {
+        buscarPaciente.findByCpf(cpf);
         repositorio.deletarPaciente(cpf);
     }
 }

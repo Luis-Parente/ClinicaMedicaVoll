@@ -2,18 +2,20 @@ package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases;
 
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.gateway.RepositorioDeAtendente;
 
-public class DeletarAtendentePorUuid {
+import java.util.UUID;
+
+public class DeletarAtendente {
 
     private final RepositorioDeAtendente repositorio;
 
-    private final FiltrarAtendentePorUuid buscarAtendente;
+    private final FiltrarAtendente buscarAtendente;
 
-    public DeletarAtendentePorUuid(RepositorioDeAtendente repositorio, FiltrarAtendentePorUuid buscarAtendente) {
+    public DeletarAtendente(RepositorioDeAtendente repositorio, FiltrarAtendente buscarAtendente) {
         this.repositorio = repositorio;
         this.buscarAtendente = buscarAtendente;
     }
 
-    public void deletarAtendente(String uuid) {
+    public void deletarAtendentePorUuid(UUID uuid) {
         buscarAtendente.findByUuid(uuid);
         repositorio.deletarAtendentePorUuid(uuid);
     }

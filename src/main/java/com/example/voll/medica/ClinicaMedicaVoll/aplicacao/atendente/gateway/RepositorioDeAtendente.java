@@ -3,14 +3,15 @@ package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.gateway;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.atendente.Atendente;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface RepositorioDeAtendente {
 
     Atendente cadastrarAtendente(Atendente atendente);
 
-    Optional<Atendente> filtrarAtendentePorUuid(String uuid);
+    Optional<Atendente> filtrarAtendentePorUuid(UUID uuid);
 
-    Atendente atualizarCadastroAtendente(String uuid, Atendente atendente);
+    Atendente atualizarCadastroAtendente(UUID uuid, Atendente atendente);
 
-    void deletarAtendentePorUuid(String uuid);
+    void deletarAtendentePorUuid(UUID uuid);
 }

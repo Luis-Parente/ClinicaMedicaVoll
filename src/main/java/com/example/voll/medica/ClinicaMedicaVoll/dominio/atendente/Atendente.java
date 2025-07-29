@@ -11,7 +11,7 @@ public class Atendente {
     private String email;
     private String senha;
 
-    public Atendente(String nome, String email, String senha) {
+    public Atendente(UUID uuid, String nome, String email, String senha) {
 
         if(nome == null || nome.isBlank()){
             throw new IllegalArgumentException("Nome deve ser preenchido!");
@@ -25,7 +25,7 @@ public class Atendente {
             throw new IllegalArgumentException("Senha deve ser preenchida!");
         }
 
-        this.uuid = UUID.randomUUID();
+        this.uuid = uuid != null ? uuid : UUID.randomUUID();
         this.nome = nome;
         this.email = email;
         this.senha = senha;

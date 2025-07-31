@@ -1,7 +1,7 @@
 package com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.medico.entidade;
 
-import com.example.voll.medica.ClinicaMedicaVoll.dominio.endereco.Endereco;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Especialidade;
+import com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.endereco.entidade.EnderecoEntidade;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +18,6 @@ import java.util.UUID;
 public class MedicoEntidade {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID uuid;
 
     @Column(unique = true)
@@ -29,7 +28,7 @@ public class MedicoEntidade {
     private String telefone;
 
     @Embedded
-    private Endereco endereco;
+    private EnderecoEntidade endereco;
     private Boolean ativo;
 
 

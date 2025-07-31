@@ -18,7 +18,7 @@ public class Medico {
     private Boolean ativo;
 
     public Medico(UUID uuid, String crm, String nome, Especialidade especialidade, String email, String telefone,
-                  Endereco endereco) {
+                  Endereco endereco, Boolean ativo) {
 
         if (crm == null || !crm.matches("^\\d{4,8}-[A-Z]{2}$")) {
             throw new IllegalArgumentException("CRM no formato incorreto!");
@@ -47,7 +47,7 @@ public class Medico {
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
-        this.ativo = true;
+        this.ativo = ativo != null ? ativo : true;
     }
 
     public UUID getUuid() {

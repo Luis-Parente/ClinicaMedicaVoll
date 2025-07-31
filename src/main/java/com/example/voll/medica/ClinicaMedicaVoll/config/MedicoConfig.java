@@ -50,6 +50,11 @@ public class MedicoConfig {
     }
 
     @Bean
+    DeletarMedicoPorUuid deletarMedicoPorUuid(RepositorioDeMedico repositorio, FiltrarMedicosPorUuid filtrarMedicos) {
+        return new DeletarMedicoPorUuid(repositorio, filtrarMedicos);
+    }
+
+    @Bean
     RepositorioDeMedicoJpaAdapter repositorioDeMedicoJ(RepositorioDeMedicoJpa repositorio) {
         return new RepositorioDeMedicoJpaAdapter(repositorio);
     }

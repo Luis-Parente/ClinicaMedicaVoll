@@ -18,7 +18,6 @@ public class RepositorioDeMedicoJpaAdapter implements RepositorioDeMedico {
         this.repositorio = repositorio;
     }
 
-
     @Override
     public Medico cadastrarMedico(Medico medico) {
         MedicoEntidade entidade = MedicoJpaMapper.paraEntidade(medico);
@@ -66,7 +65,12 @@ public class RepositorioDeMedicoJpaAdapter implements RepositorioDeMedico {
     public void reativarCadastroMedico(UUID uuid) {
         Optional<Medico> dominio = filtrarMedicoPorUuid(uuid);
         MedicoEntidade entidade = MedicoJpaMapper.paraEntidade(dominio.get());
-        entidade.setAtivo(false);
+        entidade.setAtivo(true);
         repositorio.save(entidade);
+    }
+
+    @Override
+    public void deletarMedico(UUID uuid) {
+        repositorio.deleteById(uuid);
     }
 }

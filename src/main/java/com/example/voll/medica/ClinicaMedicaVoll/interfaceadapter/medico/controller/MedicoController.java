@@ -22,17 +22,20 @@ public class MedicoController {
     private final FiltrarMedicosPorUuid filtrarMedicosPorUuid;
     private final ListarTodosMedicos listarTodosMedicos;
     private final ReativarCadastroMedico reativarCadastroMedico;
+    private final DeletarMedicoPorUuid deletarMedicoPorUuid;
 
     public MedicoController(AtualizarCadastroMedico atualizarCadastroMedico, CadastrarMedico cadastrarMedico,
                             DesativarCadastroMedico desativarCadastroMedico,
                             FiltrarMedicosPorUuid filtrarMedicosPorUuid,
-                            ListarTodosMedicos listarTodosMedicos, ReativarCadastroMedico reativarCadastroMedico) {
+                            ListarTodosMedicos listarTodosMedicos, ReativarCadastroMedico reativarCadastroMedico,
+                            DeletarMedicoPorUuid deletarMedicoPorUuid) {
         this.atualizarCadastroMedico = atualizarCadastroMedico;
         this.cadastrarMedico = cadastrarMedico;
         this.desativarCadastroMedico = desativarCadastroMedico;
         this.filtrarMedicosPorUuid = filtrarMedicosPorUuid;
         this.listarTodosMedicos = listarTodosMedicos;
         this.reativarCadastroMedico = reativarCadastroMedico;
+        this.deletarMedicoPorUuid = deletarMedicoPorUuid;
     }
 
     @PostMapping
@@ -44,7 +47,7 @@ public class MedicoController {
     }
 
     @GetMapping(value = "/{uuid}")
-    public ResponseEntity<MedicoDTO> filtrarMedicoPorUuid(@RequestParam UUID uuid) {
+    public ResponseEntity<MedicoDTO> filtrarMedicoPorUuid(@PathVariable UUID uuid) {
         Medico dominio = filtrarMedicosPorUuid.findByUuid(uuid);
         return ResponseEntity.ok().body(MedicoMapper.paraDto(dominio));
     }
@@ -56,20 +59,26 @@ public class MedicoController {
     }
 
     @PutMapping(value = "/{uuid}")
-    public ResponseEntity<MedicoDTO> atualizarMedico(@RequestParam UUID uuid, @RequestBody MedicoDTO dto) {
+    public ResponseEntity<MedicoDTO> atualizarMedico(@PathVariable UUID uuid, @RequestBody MedicoDTO dto) {
         Medico dominio = atualizarCadastroMedico.atualizarDadosMedico(uuid, MedicoMapper.paraDominio(dto));
         return ResponseEntity.ok().body(MedicoMapper.paraDto(dominio));
     }
 
     @PutMapping(value = "/desativar/{uuid}")
-    public ResponseEntity<Void> desativarCadastroMedico(@RequestParam UUID uuid) {
+    public ResponseEntity<Void> desativarCadastroMedico(@PathVariable UUID uuid) {
         desativarCadastroMedico.desativarMedico(uuid);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(value = "/reativar/{uuid}")
-    public ResponseEntity<Void> reativarCadastroMedico(@RequestParam UUID uuid) {
+    public ResponseEntity<Void> reativarCadastroMedico(@PathVariable UUID uuid) {
         reativarCadastroMedico.reativarMedico(uuid);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping(value = "/{uuid}")
+    public ResponseEntity<Void> deletarCadastroMedico(@PathVariable UUID uuid) {
+        deletarMedicoPorUuid.deletarMedicoPorUuid(uuid);
         return ResponseEntity.noContent().build();
     }
 }

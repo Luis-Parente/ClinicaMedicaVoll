@@ -24,4 +24,6 @@ public interface RepositorioDeMedico {
     void desativarCadastroMedico(UUID uuid);
 
     void reativarCadastroMedico(UUID uuid);
+
+    void deletarMedico(UUID uuid);
 }

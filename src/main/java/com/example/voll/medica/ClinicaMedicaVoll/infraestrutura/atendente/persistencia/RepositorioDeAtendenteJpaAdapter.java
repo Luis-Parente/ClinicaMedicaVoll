@@ -31,7 +31,6 @@ public class RepositorioDeAtendenteJpaAdapter implements RepositorioDeAtendente 
 
     @Override
     public Atendente atualizarCadastroAtendente(UUID uuid, Atendente atendente) {
-        filtrarAtendentePorUuid(uuid);
         AtendenteEntidade entidade = AtendenteJpaMapper.paraEntidade(atendente);
         entidade.setUuid(uuid);
         repositorio.save(entidade);
@@ -40,7 +39,6 @@ public class RepositorioDeAtendenteJpaAdapter implements RepositorioDeAtendente 
 
     @Override
     public void deletarAtendentePorUuid(UUID uuid) {
-        filtrarAtendentePorUuid(uuid);
         repositorio.deleteById(uuid);
     }
 }

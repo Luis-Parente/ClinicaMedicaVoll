@@ -13,7 +13,7 @@ public class Consulta {
     private LocalDateTime dataEHora;
     private StatusConsulta status;
 
-    public Consulta(String crmMedico, String cpfPaciente, LocalDateTime dataEHora) {
+    public Consulta(UUID uuid, String crmMedico, String cpfPaciente, LocalDateTime dataEHora) {
 
         if (crmMedico == null || !crmMedico.matches("^\\d{4,8}-[A-Z]{2}$")) {
             throw new IllegalArgumentException("CRM no formato incorreto!");
@@ -27,11 +27,19 @@ public class Consulta {
             throw new IllegalArgumentException("A consulta deve ser agendada numa data futura!");
         }
 
-        this.uuid = UUID.randomUUID();
+        this.uuid = uuid != null ? uuid : UUID.randomUUID();
         this.crmMedico = crmMedico;
         this.cpfPaciente = cpfPaciente;
         this.dataEHora = dataEHora;
         this.status = StatusConsulta.AGENDADO;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getCrmMedico() {

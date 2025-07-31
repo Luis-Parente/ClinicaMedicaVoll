@@ -1,9 +1,11 @@
 package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.medico.gateway;
 
+import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Especialidade;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Medico;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface RepositorioDeMedico {
 
@@ -13,13 +15,13 @@ public interface RepositorioDeMedico {
 
     List<Medico> listarTodosMedicos();
 
-    List<Medico> filtrarMedicosPorEspecialidade(String especialidade);
+    List<Medico> filtrarMedicosPorEspecialidade(Especialidade especialidade);
 
-    Optional<Medico> filtrarMedicoPorCrm(String crm);
+    Optional<Medico> filtrarMedicoPorUuid(UUID uuid);
 
-    Medico atualizarCadastroMedico(String crm, Medico medico);
+    Medico atualizarCadastroMedico(UUID uuid, Medico medico);
 
-    void desativarCadastroMedico(String crmMedico);
+    void desativarCadastroMedico(UUID uuid);
 
-    void reativarCadastroMedico(String crmMedico);
+    void reativarCadastroMedico(UUID uuid);
 }

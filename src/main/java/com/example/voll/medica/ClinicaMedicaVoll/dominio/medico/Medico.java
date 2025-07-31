@@ -3,11 +3,13 @@ package com.example.voll.medica.ClinicaMedicaVoll.dominio.medico;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.endereco.Endereco;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Medico {
 
-    private String crm;
+    private UUID uuid;
 
+    private String crm;
     private String nome;
     private Especialidade especialidade;
     private String email;
@@ -15,7 +17,7 @@ public class Medico {
     private Endereco endereco;
     private Boolean ativo;
 
-    public Medico(String crm, String nome, Especialidade especialidade, String email, String telefone,
+    public Medico(UUID uuid, String crm, String nome, Especialidade especialidade, String email, String telefone,
                   Endereco endereco) {
 
         if (crm == null || !crm.matches("^\\d{4,8}-[A-Z]{2}$")) {
@@ -38,6 +40,7 @@ public class Medico {
             throw new IllegalArgumentException("Endereco do medico está incompleto!");
         }
 
+        this.uuid = uuid != null ? uuid : UUID.randomUUID();
         this.crm = crm;
         this.nome = nome;
         this.especialidade = especialidade;
@@ -45,6 +48,14 @@ public class Medico {
         this.telefone = telefone;
         this.endereco = endereco;
         this.ativo = true;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getCrm() {

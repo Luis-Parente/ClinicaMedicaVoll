@@ -3,17 +3,19 @@ package com.example.voll.medica.ClinicaMedicaVoll.dominio.paciente;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.endereco.Endereco;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class Paciente {
 
-    private String cpf;
+    private UUID uuid;
 
+    private String cpf;
     private String nome;
     private String email;
     private String telefone;
     private Endereco endereco;
 
-    public Paciente(String cpf, String nome, String email, String telefone, Endereco endereco) {
+    public Paciente(UUID uuid, String cpf, String nome, String email, String telefone, Endereco endereco) {
 
         if (cpf == null || !cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}\\-\\d{2}")) {
             throw new IllegalArgumentException("CPF no formato incorreto!");
@@ -31,11 +33,20 @@ public class Paciente {
             throw new IllegalArgumentException("Endereco do paciente está incompleto!");
         }
 
+        this.uuid = uuid != null ? uuid : UUID.randomUUID();
         this.cpf = cpf;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
+    }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public String getCpf() {

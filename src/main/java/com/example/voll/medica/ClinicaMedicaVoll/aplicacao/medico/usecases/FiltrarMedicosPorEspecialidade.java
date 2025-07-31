@@ -1,6 +1,7 @@
 package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.medico.usecases;
 
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.medico.gateway.RepositorioDeMedico;
+import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Especialidade;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Medico;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public class FiltrarMedicosPorEspecialidade {
         this.repositorio = repositorio;
     }
 
-    public List<Medico> listarMedicosPorEspecialidade(String especialidade) {
+    public List<Medico> listarMedicosPorEspecialidade(Especialidade especialidade) {
         return repositorio.filtrarMedicosPorEspecialidade(especialidade);
     }
 }

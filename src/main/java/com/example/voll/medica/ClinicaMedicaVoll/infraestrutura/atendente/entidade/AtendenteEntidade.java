@@ -3,12 +3,18 @@ package com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.atendente.entid
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.*;
 
 import java.util.Objects;
 import java.util.UUID;
 
 @Entity
 @Table(name = "tb_atendente")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class AtendenteEntidade {
 
     @Id
@@ -17,48 +23,6 @@ public class AtendenteEntidade {
     private String nome;
     private String email;
     private String senha;
-
-    public AtendenteEntidade() {
-    }
-
-    public AtendenteEntidade(UUID uuid, String nome, String email, String senha) {
-        this.uuid = uuid;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 
     @Override
     public boolean equals(Object o) {

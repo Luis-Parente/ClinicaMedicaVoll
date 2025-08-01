@@ -1,6 +1,7 @@
 package com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.medico.controller;
 
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.medico.usecases.*;
+import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Especialidade;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Medico;
 import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.medico.dto.MedicoDTO;
 import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.medico.mapper.MedicoMapper;
@@ -18,24 +19,27 @@ public class MedicoController {
 
     private final AtualizarMedico atualizarMedico;
     private final CadastrarMedico cadastrarMedico;
+    private final DeletarMedico deletarMedico;
     private final DesativarCadastroMedico desativarCadastroMedico;
+    private final FiltrarMedicosPorEspecialidade filtrarMedicosPorEspecialidade;
     private final FiltrarMedicosPorUuid filtrarMedicosPorUuid;
     private final ListarMedicos listarMedicos;
     private final ReativarCadastroMedico reativarCadastroMedico;
-    private final DeletarMedico deletarMedico;
 
     public MedicoController(AtualizarMedico atualizarMedico, CadastrarMedico cadastrarMedico,
+                            DeletarMedico deletarMedico,
                             DesativarCadastroMedico desativarCadastroMedico,
-                            FiltrarMedicosPorUuid filtrarMedicosPorUuid,
-                            ListarMedicos listarMedicos, ReativarCadastroMedico reativarCadastroMedico,
-                            DeletarMedico deletarMedico) {
+                            FiltrarMedicosPorEspecialidade filtrarMedicosPorEspecialidade,
+                            FiltrarMedicosPorUuid filtrarMedicosPorUuid, ListarMedicos listarMedicos,
+                            ReativarCadastroMedico reativarCadastroMedico) {
         this.atualizarMedico = atualizarMedico;
         this.cadastrarMedico = cadastrarMedico;
+        this.deletarMedico = deletarMedico;
         this.desativarCadastroMedico = desativarCadastroMedico;
+        this.filtrarMedicosPorEspecialidade = filtrarMedicosPorEspecialidade;
         this.filtrarMedicosPorUuid = filtrarMedicosPorUuid;
         this.listarMedicos = listarMedicos;
         this.reativarCadastroMedico = reativarCadastroMedico;
-        this.deletarMedico = deletarMedico;
     }
 
     @PostMapping
@@ -50,6 +54,12 @@ public class MedicoController {
     public ResponseEntity<MedicoDTO> filtrarMedicoPorUuid(@PathVariable UUID uuid) {
         Medico dominio = filtrarMedicosPorUuid.findByUuid(uuid);
         return ResponseEntity.ok().body(MedicoMapper.paraDto(dominio));
+    }
+
+    @GetMapping(value = "/porEspecialidade/{especialidade}")
+    public ResponseEntity<List<MedicoDTO>> filtrarMedicoPorEspecialidade(@PathVariable Especialidade especialidade){
+        List<Medico> dominio = filtrarMedicosPorEspecialidade.listarMedicosPorEspecialidade(especialidade);
+        return ResponseEntity.ok().body(dominio.stream().map(MedicoMapper::paraDto).toList());
     }
 
     @GetMapping

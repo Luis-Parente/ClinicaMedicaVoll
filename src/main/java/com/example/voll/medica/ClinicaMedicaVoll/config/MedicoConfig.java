@@ -22,6 +22,11 @@ public class MedicoConfig {
     }
 
     @Bean
+    DeletarMedico deletarMedicoPorUuid(RepositorioDeMedico repositorio, FiltrarMedicosPorUuid filtrarMedicos) {
+        return new DeletarMedico(repositorio, filtrarMedicos);
+    }
+
+    @Bean
     DesativarCadastroMedico desativarCadastroMedico(RepositorioDeMedico repositorio,
                                                     FiltrarMedicosPorUuid filtrarMedico) {
         return new DesativarCadastroMedico(repositorio, filtrarMedico);
@@ -47,11 +52,6 @@ public class MedicoConfig {
     ReativarCadastroMedico reativarCadastroMedico(RepositorioDeMedico repositorio,
                                                   FiltrarMedicosPorUuid filtrarMedico) {
         return new ReativarCadastroMedico(repositorio, filtrarMedico);
-    }
-
-    @Bean
-    DeletarMedico deletarMedicoPorUuid(RepositorioDeMedico repositorio, FiltrarMedicosPorUuid filtrarMedicos) {
-        return new DeletarMedico(repositorio, filtrarMedicos);
     }
 
     @Bean

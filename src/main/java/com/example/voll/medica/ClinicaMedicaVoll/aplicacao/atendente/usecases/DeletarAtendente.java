@@ -8,9 +8,9 @@ public class DeletarAtendente {
 
     private final RepositorioDeAtendente repositorio;
 
-    private final FiltrarAtendente buscarAtendente;
+    private final FiltrarAtendentePorUuid buscarAtendente;
 
-    public DeletarAtendente(RepositorioDeAtendente repositorio, FiltrarAtendente buscarAtendente) {
+    public DeletarAtendente(RepositorioDeAtendente repositorio, FiltrarAtendentePorUuid buscarAtendente) {
         this.repositorio = repositorio;
         this.buscarAtendente = buscarAtendente;
     }

@@ -4,7 +4,7 @@ import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.gateway.Rep
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.AtualizarAtendente;
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.CadastrarAtendente;
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.DeletarAtendente;
-import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.FiltrarAtendente;
+import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.FiltrarAtendentePorUuid;
 import com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.atendente.persistencia.RepositorioDeAtendenteJpa;
 import com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.atendente.persistencia.RepositorioDeAtendenteJpaAdapter;
 import org.springframework.context.annotation.Bean;
@@ -19,18 +19,18 @@ public class AtendenteConfig {
     }
 
     @Bean
-    FiltrarAtendente filtrarAtendentePorUuid(RepositorioDeAtendente repositorio) {
-        return new FiltrarAtendente(repositorio);
+    FiltrarAtendentePorUuid filtrarAtendentePorUuid(RepositorioDeAtendente repositorio) {
+        return new FiltrarAtendentePorUuid(repositorio);
     }
 
     @Bean
-    AtualizarAtendente atualizarCadastroAtendente(RepositorioDeAtendente repositorio, FiltrarAtendente filtrarAtendente) {
-        return new AtualizarAtendente(repositorio, filtrarAtendente);
+    AtualizarAtendente atualizarCadastroAtendente(RepositorioDeAtendente repositorio, FiltrarAtendentePorUuid filtrarAtendentePorUuid) {
+        return new AtualizarAtendente(repositorio, filtrarAtendentePorUuid);
     }
 
     @Bean
-    DeletarAtendente deletarAtendentePorUuid(RepositorioDeAtendente repositorio,  FiltrarAtendente filtrarAtendente) {
-        return new DeletarAtendente(repositorio, filtrarAtendente);
+    DeletarAtendente deletarAtendentePorUuid(RepositorioDeAtendente repositorio,  FiltrarAtendentePorUuid filtrarAtendentePorUuid) {
+        return new DeletarAtendente(repositorio, filtrarAtendentePorUuid);
     }
 
     @Bean

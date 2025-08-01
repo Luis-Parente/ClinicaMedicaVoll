@@ -5,13 +5,13 @@ import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Medico;
 
 import java.util.UUID;
 
-public class AtualizarCadastroMedico {
+public class AtualizarMedico {
 
     private final RepositorioDeMedico repositorio;
 
     private final FiltrarMedicosPorUuid buscarMedico;
 
-    public AtualizarCadastroMedico(RepositorioDeMedico repositorio, FiltrarMedicosPorUuid buscarMedico) {
+    public AtualizarMedico(RepositorioDeMedico repositorio, FiltrarMedicosPorUuid buscarMedico) {
         this.repositorio = repositorio;
         this.buscarMedico = buscarMedico;
     }

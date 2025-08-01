@@ -16,26 +16,26 @@ import java.util.UUID;
 @RequestMapping(value = "/medico")
 public class MedicoController {
 
-    private final AtualizarCadastroMedico atualizarCadastroMedico;
+    private final AtualizarMedico atualizarMedico;
     private final CadastrarMedico cadastrarMedico;
     private final DesativarCadastroMedico desativarCadastroMedico;
     private final FiltrarMedicosPorUuid filtrarMedicosPorUuid;
-    private final ListarTodosMedicos listarTodosMedicos;
+    private final ListarMedicos listarMedicos;
     private final ReativarCadastroMedico reativarCadastroMedico;
-    private final DeletarMedicoPorUuid deletarMedicoPorUuid;
+    private final DeletarMedico deletarMedico;
 
-    public MedicoController(AtualizarCadastroMedico atualizarCadastroMedico, CadastrarMedico cadastrarMedico,
+    public MedicoController(AtualizarMedico atualizarMedico, CadastrarMedico cadastrarMedico,
                             DesativarCadastroMedico desativarCadastroMedico,
                             FiltrarMedicosPorUuid filtrarMedicosPorUuid,
-                            ListarTodosMedicos listarTodosMedicos, ReativarCadastroMedico reativarCadastroMedico,
-                            DeletarMedicoPorUuid deletarMedicoPorUuid) {
-        this.atualizarCadastroMedico = atualizarCadastroMedico;
+                            ListarMedicos listarMedicos, ReativarCadastroMedico reativarCadastroMedico,
+                            DeletarMedico deletarMedico) {
+        this.atualizarMedico = atualizarMedico;
         this.cadastrarMedico = cadastrarMedico;
         this.desativarCadastroMedico = desativarCadastroMedico;
         this.filtrarMedicosPorUuid = filtrarMedicosPorUuid;
-        this.listarTodosMedicos = listarTodosMedicos;
+        this.listarMedicos = listarMedicos;
         this.reativarCadastroMedico = reativarCadastroMedico;
-        this.deletarMedicoPorUuid = deletarMedicoPorUuid;
+        this.deletarMedico = deletarMedico;
     }
 
     @PostMapping
@@ -54,13 +54,13 @@ public class MedicoController {
 
     @GetMapping
     public ResponseEntity<List<MedicoDTO>> listarTodosMedicos() {
-        List<Medico> dominio = listarTodosMedicos.listarMedicos();
+        List<Medico> dominio = listarMedicos.listarTodosMedicos();
         return ResponseEntity.ok().body(dominio.stream().map(MedicoMapper::paraDto).toList());
     }
 
     @PutMapping(value = "/{uuid}")
     public ResponseEntity<MedicoDTO> atualizarMedico(@PathVariable UUID uuid, @RequestBody MedicoDTO dto) {
-        Medico dominio = atualizarCadastroMedico.atualizarDadosMedico(uuid, MedicoMapper.paraDominio(dto));
+        Medico dominio = atualizarMedico.atualizarDadosMedico(uuid, MedicoMapper.paraDominio(dto));
         return ResponseEntity.ok().body(MedicoMapper.paraDto(dominio));
     }
 
@@ -77,8 +77,8 @@ public class MedicoController {
     }
 
     @DeleteMapping(value = "/{uuid}")
-    public ResponseEntity<Void> deletarCadastroMedico(@PathVariable UUID uuid) {
-        deletarMedicoPorUuid.deletarMedicoPorUuid(uuid);
+    public ResponseEntity<Void> deletarMedico(@PathVariable UUID uuid) {
+        deletarMedico.deletarMedicoPorUuid(uuid);
         return ResponseEntity.noContent().build();
     }
 }

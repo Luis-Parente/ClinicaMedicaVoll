@@ -9,9 +9,9 @@ public class AtualizarAtendente {
 
     private final RepositorioDeAtendente repositorio;
 
-    private final FiltrarAtendente buscarAtendente;
+    private final FiltrarAtendentePorUuid buscarAtendente;
 
-    public AtualizarAtendente(RepositorioDeAtendente repositorio, FiltrarAtendente buscarAtendente) {
+    public AtualizarAtendente(RepositorioDeAtendente repositorio, FiltrarAtendentePorUuid buscarAtendente) {
         this.repositorio = repositorio;
         this.buscarAtendente = buscarAtendente;
     }

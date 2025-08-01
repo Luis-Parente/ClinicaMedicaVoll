@@ -4,16 +4,18 @@ import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.excecao.EntidadeNaoEn
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.paciente.gateway.RepositorioDePaciente;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.paciente.Paciente;
 
-public class FiltrarPacientePorCpf {
+import java.util.UUID;
+
+public class FiltrarPacientePorUuid {
 
     private final RepositorioDePaciente repositorio;
 
-    public FiltrarPacientePorCpf(RepositorioDePaciente repositorio) {
+    public FiltrarPacientePorUuid(RepositorioDePaciente repositorio) {
         this.repositorio = repositorio;
     }
 
-    public Paciente findByCpf(String cpf) {
-        return repositorio.filtrarPacientePorCpf(cpf)
+    public Paciente findByUuid(UUID uuid) {
+        return repositorio.filtrarPacientePorCpf(uuid)
                 .orElseThrow(() -> new EntidadeNaoEncontradoExcecao("Paciente não encontrado!"));
     }
 }

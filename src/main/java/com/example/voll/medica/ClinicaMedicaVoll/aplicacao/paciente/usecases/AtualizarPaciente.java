@@ -3,19 +3,21 @@ package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.paciente.usecases;
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.paciente.gateway.RepositorioDePaciente;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.paciente.Paciente;
 
-public class AtualizarCadastroPaciente {
+import java.util.UUID;
+
+public class AtualizarPaciente {
 
     private final RepositorioDePaciente repositorio;
 
-    private final FiltrarPacientePorCpf buscarPaciente;
+    private final FiltrarPacientePorUuid buscarPaciente;
 
-    public AtualizarCadastroPaciente(RepositorioDePaciente repositorio, FiltrarPacientePorCpf buscarPaciente) {
+    public AtualizarPaciente(RepositorioDePaciente repositorio, FiltrarPacientePorUuid buscarPaciente) {
         this.repositorio = repositorio;
         this.buscarPaciente = buscarPaciente;
     }
 
-    public Paciente atualizarDadosPaciente(String cpf, Paciente paciente) {
-        buscarPaciente.findByCpf(cpf);
-        return repositorio.atualizarCadastroPaciente(cpf, paciente);
+    public Paciente atualizarDadosPaciente(UUID uuid, Paciente paciente) {
+        buscarPaciente.findByUuid(uuid);
+        return repositorio.atualizarCadastroPaciente(uuid, paciente);
     }
 }

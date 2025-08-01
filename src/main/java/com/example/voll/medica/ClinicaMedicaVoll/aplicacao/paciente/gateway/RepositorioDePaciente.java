@@ -3,6 +3,7 @@ package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.paciente.gateway;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.paciente.Paciente;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface RepositorioDePaciente {
 
@@ -10,9 +11,9 @@ public interface RepositorioDePaciente {
 
     Boolean validarCpfPaciente(String cpf);
 
-    Optional<Paciente> filtrarPacientePorCpf(String cpf);
+    Optional<Paciente> filtrarPacientePorCpf(UUID uuid);
 
-    Paciente atualizarCadastroPaciente(String cpf, Paciente paciente);
+    Paciente atualizarCadastroPaciente(UUID uuid, Paciente paciente);
 
-    void deletarPaciente(String cpf);
+    void deletarPaciente(UUID uuid);
 }

@@ -5,15 +5,15 @@ import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Medico;
 
 import java.util.List;
 
-public class ListarTodosMedicos {
+public class ListarMedicos {
 
     private final RepositorioDeMedico repositorio;
 
-    public ListarTodosMedicos(RepositorioDeMedico repositorio) {
+    public ListarMedicos(RepositorioDeMedico repositorio) {
         this.repositorio = repositorio;
     }
 
-    public List<Medico> listarMedicos() {
+    public List<Medico> listarTodosMedicos() {
         return repositorio.listarTodosMedicos();
     }
 }

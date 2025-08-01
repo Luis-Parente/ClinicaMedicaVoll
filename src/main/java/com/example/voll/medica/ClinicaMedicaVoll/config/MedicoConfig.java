@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class MedicoConfig {
 
     @Bean
-    AtualizarCadastroMedico atualizarCadastroMedico(RepositorioDeMedico repositorio,
-                                                    FiltrarMedicosPorUuid filtrarMedico) {
-        return new AtualizarCadastroMedico(repositorio, filtrarMedico);
+    AtualizarMedico atualizarCadastroMedico(RepositorioDeMedico repositorio,
+                                            FiltrarMedicosPorUuid filtrarMedico) {
+        return new AtualizarMedico(repositorio, filtrarMedico);
     }
 
     @Bean
@@ -38,8 +38,8 @@ public class MedicoConfig {
     }
 
     @Bean
-    ListarTodosMedicos listarTodosMedicos(RepositorioDeMedico repositorio) {
-        return new ListarTodosMedicos(repositorio);
+    ListarMedicos listarTodosMedicos(RepositorioDeMedico repositorio) {
+        return new ListarMedicos(repositorio);
     }
 
 
@@ -50,8 +50,8 @@ public class MedicoConfig {
     }
 
     @Bean
-    DeletarMedicoPorUuid deletarMedicoPorUuid(RepositorioDeMedico repositorio, FiltrarMedicosPorUuid filtrarMedicos) {
-        return new DeletarMedicoPorUuid(repositorio, filtrarMedicos);
+    DeletarMedico deletarMedicoPorUuid(RepositorioDeMedico repositorio, FiltrarMedicosPorUuid filtrarMedicos) {
+        return new DeletarMedico(repositorio, filtrarMedicos);
     }
 
     @Bean

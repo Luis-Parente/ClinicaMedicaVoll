@@ -6,11 +6,11 @@ import com.example.voll.medica.ClinicaMedicaVoll.dominio.atendente.Atendente;
 
 import java.util.UUID;
 
-public class FiltrarAtendente {
+public class FiltrarAtendentePorUuid {
 
     private final RepositorioDeAtendente repositorio;
 
-    public FiltrarAtendente(RepositorioDeAtendente repositorio) {
+    public FiltrarAtendentePorUuid(RepositorioDeAtendente repositorio) {
         this.repositorio = repositorio;
     }
 

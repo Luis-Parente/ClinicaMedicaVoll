@@ -3,7 +3,7 @@ package com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.atendente.con
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.AtualizarAtendente;
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.CadastrarAtendente;
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.DeletarAtendente;
-import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.FiltrarAtendente;
+import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.FiltrarAtendentePorUuid;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.atendente.Atendente;
 import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.atendente.dto.AtendenteEntradaDTO;
 import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.atendente.dto.AtendenteRetornoDTO;
@@ -20,15 +20,15 @@ import java.util.UUID;
 public class AtendenteController {
 
     private final CadastrarAtendente cadastrarAtendente;
-    private final FiltrarAtendente filtrarAtendente;
+    private final FiltrarAtendentePorUuid filtrarAtendentePorUuid;
     private final AtualizarAtendente atualizarAtendente;
     private final DeletarAtendente deletarAtendente;
 
-    public AtendenteController(CadastrarAtendente cadastrarAtendente, FiltrarAtendente filtrarAtendente,
+    public AtendenteController(CadastrarAtendente cadastrarAtendente, FiltrarAtendentePorUuid filtrarAtendentePorUuid,
                                AtualizarAtendente atualizarAtendente,
                                DeletarAtendente deletarAtendente) {
         this.cadastrarAtendente = cadastrarAtendente;
-        this.filtrarAtendente = filtrarAtendente;
+        this.filtrarAtendentePorUuid = filtrarAtendentePorUuid;
         this.atualizarAtendente = atualizarAtendente;
         this.deletarAtendente = deletarAtendente;
     }
@@ -43,7 +43,7 @@ public class AtendenteController {
 
     @GetMapping(value = "/{uuid}")
     public ResponseEntity<AtendenteRetornoDTO> filtrarPorUuid(@PathVariable UUID uuid) {
-        Atendente dominio = filtrarAtendente.findByUuid(uuid);
+        Atendente dominio = filtrarAtendentePorUuid.findByUuid(uuid);
         return ResponseEntity.ok().body(AtendenteMapper.paraDto(dominio));
     }
 

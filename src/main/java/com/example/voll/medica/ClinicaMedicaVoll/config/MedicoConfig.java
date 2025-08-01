@@ -55,7 +55,7 @@ public class MedicoConfig {
     }
 
     @Bean
-    RepositorioDeMedicoJpaAdapter repositorioDeMedicoJ(RepositorioDeMedicoJpa repositorio) {
+    RepositorioDeMedicoJpaAdapter repositorioDeMedic(RepositorioDeMedicoJpa repositorio) {
         return new RepositorioDeMedicoJpaAdapter(repositorio);
     }
 }

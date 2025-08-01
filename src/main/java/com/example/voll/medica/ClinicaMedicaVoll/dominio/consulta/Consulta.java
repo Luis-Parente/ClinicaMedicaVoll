@@ -13,7 +13,7 @@ public class Consulta {
     private LocalDateTime dataEHora;
     private StatusConsulta status;
 
-    public Consulta(UUID uuid, String crmMedico, String cpfPaciente, LocalDateTime dataEHora) {
+    public Consulta(UUID uuid, String crmMedico, String cpfPaciente, LocalDateTime dataEHora, StatusConsulta status) {
 
         if (crmMedico == null || !crmMedico.matches("^\\d{4,8}-[A-Z]{2}$")) {
             throw new IllegalArgumentException("CRM no formato incorreto!");
@@ -31,7 +31,7 @@ public class Consulta {
         this.crmMedico = crmMedico;
         this.cpfPaciente = cpfPaciente;
         this.dataEHora = dataEHora;
-        this.status = StatusConsulta.AGENDADO;
+        this.status = status != null ? status : StatusConsulta.AGENDADO;
     }
 
     public UUID getUuid() {

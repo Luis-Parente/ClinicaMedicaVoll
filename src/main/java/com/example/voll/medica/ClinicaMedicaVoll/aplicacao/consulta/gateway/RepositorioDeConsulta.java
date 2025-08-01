@@ -7,16 +7,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public interface RepositorioDeConsulta {
 
-    Consulta agendarConsulta(Consulta consulta);
+    Consulta agendarConsulta(Consulta dominio);
 
     Boolean validarDataConsulta(LocalDateTime dataEHora);
 
-    void cancelarConsulta(String uuid, StatusConsulta motivoCancelamento);
+    void cancelarConsulta(UUID uuid, StatusConsulta motivoCancelamento);
 
-    Optional<Consulta> filtrarConsultaPorUuid(String uuid);
+    Optional<Consulta> filtrarConsultaPorUuid(UUID uuid);
 
     List<Consulta> filtrarConsultasPorPaciente(String cpfPaciente);
 

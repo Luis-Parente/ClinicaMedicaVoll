@@ -3,6 +3,8 @@ package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.consulta.usecases;
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.consulta.gateway.RepositorioDeConsulta;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.consulta.StatusConsulta;
 
+import java.util.UUID;
+
 public class CancelarConsulta {
 
     private final RepositorioDeConsulta repositorio;
@@ -14,7 +16,7 @@ public class CancelarConsulta {
         this.buscarConsulta = buscarConsulta;
     }
 
-    public void cancelarConsultaPorUuid(String uuid, StatusConsulta motivoCancelamento) {
+    public void cancelarConsultaPorUuid(UUID uuid, StatusConsulta motivoCancelamento) {
         buscarConsulta.findByUuid(uuid);
         repositorio.cancelarConsulta(uuid, motivoCancelamento);
     }

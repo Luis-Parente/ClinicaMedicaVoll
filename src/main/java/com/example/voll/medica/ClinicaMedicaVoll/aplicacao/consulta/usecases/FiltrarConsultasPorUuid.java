@@ -4,6 +4,8 @@ import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.consulta.gateway.Repo
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.excecao.EntidadeNaoEncontradoExcecao;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.consulta.Consulta;
 
+import java.util.UUID;
+
 public class FiltrarConsultasPorUuid {
 
     private final RepositorioDeConsulta repositorio;
@@ -12,7 +14,7 @@ public class FiltrarConsultasPorUuid {
         this.repositorio = repositorio;
     }
 
-    public Consulta findByUuid(String uuid) {
+    public Consulta findByUuid(UUID uuid) {
         return repositorio.filtrarConsultaPorUuid(uuid)
                 .orElseThrow(() -> new EntidadeNaoEncontradoExcecao("Consulta nào encontrada!"));
     }

@@ -2,10 +2,7 @@ package com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.paciente.entida
 
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.endereco.Endereco;
 import com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.endereco.entidade.EnderecoEntidade;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Objects;
@@ -24,6 +21,7 @@ public class PacienteEntidade {
     @Id
     private UUID uuid;
 
+    @Column(unique = true)
     private String cpf;
     private String nome;
     private String email;

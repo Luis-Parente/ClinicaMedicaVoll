@@ -12,6 +12,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @ToString
 public class EnderecoEntidade {
+
     private String logradouro;
     private Integer numero;
     private String complemento;

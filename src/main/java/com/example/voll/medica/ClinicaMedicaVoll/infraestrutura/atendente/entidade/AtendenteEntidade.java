@@ -1,5 +1,6 @@
 package com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.atendente.entidade;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -21,6 +22,8 @@ public class AtendenteEntidade {
     private UUID uuid;
 
     private String nome;
+
+    @Column(unique = true)
     private String email;
     private String senha;
 

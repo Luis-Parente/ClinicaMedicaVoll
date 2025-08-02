@@ -58,8 +58,8 @@ public class ConsultaController {
 
     @GetMapping(value = "/porMedico/{crmMedico}")
     public ResponseEntity<List<ConsultaDTO>> filtrarConsultaPorMedicoEDatas(@PathVariable String crmMedico,
-                                                                            @RequestParam LocalDate dataInicial,
-                                                                            @RequestParam LocalDate dataFinal) {
+                                                                            @RequestParam(defaultValue = "") LocalDate dataInicial,
+                                                                            @RequestParam(defaultValue = "") LocalDate dataFinal) {
         List<Consulta> dominio = filtrarConsultasPorMedicoEDatas.listarConsultasPorCrmMedicoEDatas(crmMedico,
                 dataInicial, dataFinal);
         return ResponseEntity.ok().body(dominio.stream().map(ConsultaMapper::paraDto).toList());

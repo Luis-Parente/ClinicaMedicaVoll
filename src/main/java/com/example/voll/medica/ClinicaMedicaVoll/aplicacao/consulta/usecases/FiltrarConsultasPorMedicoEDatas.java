@@ -4,6 +4,7 @@ import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.consulta.gateway.Repo
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.consulta.Consulta;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalAdjusters;
 import java.util.List;
 
 public class FiltrarConsultasPorMedicoEDatas {
@@ -14,7 +15,16 @@ public class FiltrarConsultasPorMedicoEDatas {
         this.repositorio = repositorio;
     }
 
-    public List<Consulta> listarConsultasPorCrmMedicoEDatas(String crmMedico, LocalDate dataInicial, LocalDate dataFinal) {
-        return repositorio.filtrarConsultasPorMedicoEDatas(crmMedico, dataInicial, dataFinal);
+    public List<Consulta> listarConsultasPorCrmMedicoEDatas(String crmMedico, LocalDate dataInicial,
+                                                            LocalDate dataFinal) {
+        if (dataInicial == null) {
+            dataInicial = LocalDate.now().withDayOfMonth(1);
+        }
+
+        if (dataFinal == null) {
+            dataFinal = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
+        }
+
+        return repositorio.filtrarConsultasPorMedicoEDatas(crmMedico, dataInicial, dataFinal.plusDays(1));
     }
 }

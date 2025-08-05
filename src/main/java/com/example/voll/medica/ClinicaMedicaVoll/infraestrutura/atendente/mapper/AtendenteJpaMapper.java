@@ -6,10 +6,12 @@ import com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.atendente.entida
 public class AtendenteJpaMapper {
 
     public static Atendente paraDominio(AtendenteEntidade entidade) {
-        return new Atendente(entidade.getUuid(), entidade.getNome(), entidade.getEmail(), entidade.getSenha());
+        return new Atendente(entidade.getUuid(), entidade.getNome(), entidade.getEmail(), entidade.getSenha(),
+                entidade.getNivelDeAcesso());
     }
 
     public static AtendenteEntidade paraEntidade(Atendente dominio) {
-        return new AtendenteEntidade(dominio.getUuid(), dominio.getNome(), dominio.getEmail(), dominio.getSenha());
+        return new AtendenteEntidade(dominio.getUuid(), dominio.getNome(), dominio.getEmail(), dominio.getSenha(),
+                dominio.getNivelDeAcesso());
     }
 }

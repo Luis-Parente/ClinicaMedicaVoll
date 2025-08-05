@@ -10,25 +10,31 @@ public class Atendente {
     private String nome;
     private String email;
     private String senha;
+    private NivelDeAcesso nivelDeAcesso;
 
-    public Atendente(UUID uuid, String nome, String email, String senha) {
+    public Atendente(UUID uuid, String nome, String email, String senha, NivelDeAcesso nivelDeAcesso) {
 
-        if(nome == null || nome.isBlank()){
+        if (nome == null || nome.isBlank()) {
             throw new IllegalArgumentException("Nome deve ser preenchido!");
         }
 
-        if(email == null || email.isBlank()){
+        if (email == null || email.isBlank()) {
             throw new IllegalArgumentException("E-mail deve ser preenchido!");
         }
 
-        if(senha == null || senha.isBlank()){
+        if (senha == null || senha.isBlank()) {
             throw new IllegalArgumentException("Senha deve ser preenchida!");
+        }
+
+        if (nivelDeAcesso == null) {
+            throw new IllegalArgumentException("Nivel de acesso deve ser preenchido!");
         }
 
         this.uuid = uuid != null ? uuid : UUID.randomUUID();
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.nivelDeAcesso = nivelDeAcesso;
     }
 
     public UUID getUuid() {
@@ -57,6 +63,14 @@ public class Atendente {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public NivelDeAcesso getNivelDeAcesso() {
+        return nivelDeAcesso;
+    }
+
+    public void setNivelDeAcesso(NivelDeAcesso nivelDeAcesso) {
+        this.nivelDeAcesso = nivelDeAcesso;
     }
 
     @Override

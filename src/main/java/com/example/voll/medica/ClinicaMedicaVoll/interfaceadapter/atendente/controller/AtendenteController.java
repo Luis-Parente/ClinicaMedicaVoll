@@ -4,10 +4,15 @@ import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.At
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.CadastrarAtendente;
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.DeletarAtendente;
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.usecases.FiltrarAtendentePorUuid;
+import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.seguranca.autentificador.AutenticarAtendente;
+import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.seguranca.token.GerarToken;
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.atendente.Atendente;
 import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.atendente.dto.AtendenteEntradaDTO;
+import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.atendente.dto.AtendenteLoginDTO;
 import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.atendente.dto.AtendenteRetornoDTO;
+import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.atendente.dto.RetornoDeLoginDTO;
 import com.example.voll.medica.ClinicaMedicaVoll.interfaceadapter.atendente.mapper.AtendenteMapper;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -23,14 +28,25 @@ public class AtendenteController {
     private final FiltrarAtendentePorUuid filtrarAtendentePorUuid;
     private final AtualizarAtendente atualizarAtendente;
     private final DeletarAtendente deletarAtendente;
+    private final GerarToken gerarToken;
+    private final AutenticarAtendente autenticarAtendente;
 
     public AtendenteController(CadastrarAtendente cadastrarAtendente, FiltrarAtendentePorUuid filtrarAtendentePorUuid,
-                               AtualizarAtendente atualizarAtendente,
-                               DeletarAtendente deletarAtendente) {
+                               AtualizarAtendente atualizarAtendente, DeletarAtendente deletarAtendente,
+                               GerarToken gerarToken, AutenticarAtendente autenticarAtendente) {
         this.cadastrarAtendente = cadastrarAtendente;
         this.filtrarAtendentePorUuid = filtrarAtendentePorUuid;
         this.atualizarAtendente = atualizarAtendente;
         this.deletarAtendente = deletarAtendente;
+        this.gerarToken = gerarToken;
+        this.autenticarAtendente = autenticarAtendente;
+    }
+
+    @PostMapping(value = "/login")
+    public ResponseEntity<RetornoDeLoginDTO> login(@RequestBody @Valid AtendenteLoginDTO dto) {
+        Atendente dominio = autenticarAtendente.autenticar(dto.email(), dto.senha());
+        String token = gerarToken.gerarToken(dominio);
+        return ResponseEntity.ok().body(new RetornoDeLoginDTO(token));
     }
 
     @PostMapping

@@ -4,11 +4,14 @@ import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.atendente.gateway.Rep
 import com.example.voll.medica.ClinicaMedicaVoll.dominio.atendente.Atendente;
 import com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.atendente.entidade.AtendenteEntidade;
 import com.example.voll.medica.ClinicaMedicaVoll.infraestrutura.atendente.mapper.AtendenteJpaMapper;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Optional;
 import java.util.UUID;
 
-public class RepositorioDeAtendenteJpaAdapter implements RepositorioDeAtendente {
+public class RepositorioDeAtendenteJpaAdapter implements RepositorioDeAtendente, UserDetailsService {
 
     private final RepositorioDeAtendenteJpa repositorio;
 
@@ -40,5 +43,21 @@ public class RepositorioDeAtendenteJpaAdapter implements RepositorioDeAtendente 
     @Override
     public void deletarAtendentePorUuid(UUID uuid) {
         repositorio.deleteById(uuid);
+    }
+
+    @Override
+    public Optional<Atendente> filtrarAtendentePorEmail(String email) {
+        return repositorio.findByEmail(email)
+                .map(AtendenteJpaMapper::paraDominio);
+    }
+
+    @Override
+    public Boolean validarEmail(String email) {
+        return repositorio.verificaEmail(email);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return filtrarAtendentePorEmail(username).map(AtendenteJpaMapper::paraEntidade).get();
     }
 }

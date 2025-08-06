@@ -1,0 +1,839 @@
+{
+	"info": {
+		"_postman_id": "8cb67372-5615-4230-9439-54c0ba172b6d",
+		"name": "ClinicaMedicaVoll",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39070626"
+	},
+	"item": [
+		{
+			"name": "Atendente",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code >= 200 && pm.response.code < 300) {\r",
+									"    const json = pm.response.json();\r",
+									"    pm.environment.set(\"token\", json.token);\r",
+									"    console.log(\"Token salvo:\", json.token);\r",
+									"} else {\r",
+									"    console.log(\"Erro ao salvar token. Código:\", pm.response.code);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"souza.cleber@gmail.com\",\r\n    \"senha\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/atendente/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendente",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Novo atendente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Cleber de Souza\",\r\n    \"email\": \"souza.cleber@gmail.com\",\r\n    \"senha\": \"123456789\",\r\n    \"nivelDeAcesso\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/atendente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atendente por uuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/atendente/d6666955-a9d0-4f29-9a63-37e495dfdc49",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendente",
+								"d6666955-a9d0-4f29-9a63-37e495dfdc49"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza atendente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Cleber de Souza Atualizado\",\r\n    \"email\": \"souza.cleber@gmail.com\",\r\n    \"senha\": \"123456789\",\r\n    \"nivelDeAcesso\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/atendente/db76c07e-37d5-4f96-8cfc-2fc35163a105",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendente",
+								"db76c07e-37d5-4f96-8cfc-2fc35163a105"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atendente por uuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/atendente/d6666955-a9d0-4f29-9a63-37e495dfdc49",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atendente",
+								"d6666955-a9d0-4f29-9a63-37e495dfdc49"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Paciente",
+			"item": [
+				{
+					"name": "Novo paciente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"123.123.123-14\",\r\n  \"nome\": \"Marcos Alberto\",\r\n  \"email\": \"marquinhos@gmail.com\",\r\n  \"telefone\": \"(11) 91234-5678\",\r\n  \"endereco\": {\r\n    \"logradouro\": \"Rua das Acácias\",\r\n    \"numero\": \"123\",\r\n    \"complemento\": \"Sala 45\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"uf\": \"SP\",\r\n    \"cep\": \"01001-000\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/paciente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atendente por uuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/paciente/d6f24413-0f21-4e19-966a-f540f15ff27e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								"d6f24413-0f21-4e19-966a-f540f15ff27e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza atendente",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"123.123.123-13\",\r\n  \"nome\": \"Marcos Alberto Atualizado\",\r\n  \"email\": \"marquinhos@gmail.com\",\r\n  \"telefone\": \"(11) 91234-5678\",\r\n  \"endereco\": {\r\n    \"logradouro\": \"Rua das Acácias\",\r\n    \"numero\": \"123\",\r\n    \"complemento\": \"Sala 45\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"uf\": \"SP\",\r\n    \"cep\": \"01001-000\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/paciente/d6f24413-0f21-4e19-966a-f540f15ff27e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								"d6f24413-0f21-4e19-966a-f540f15ff27e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atendente por uuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/paciente/5fabf1bf-2804-4d85-9f0b-9fe00ec607a1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente",
+								"5fabf1bf-2804-4d85-9f0b-9fe00ec607a1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medico",
+			"item": [
+				{
+					"name": "Novo medico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"crm\": \"123459-SP\",\r\n  \"nome\": \"Dr. João Silva\",\r\n  \"especialidade\": \"GINECOLOGISTA\",\r\n  \"email\": \"joao.silva@hospital.com\",\r\n  \"telefone\": \"(11) 91234-5678\",\r\n  \"endereco\": {\r\n    \"logradouro\": \"Rua das Acácias\",\r\n    \"numero\": \"123\",\r\n    \"complemento\": \"Sala 45\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"uf\": \"SP\",\r\n    \"cep\": \"01001-000\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Medico por uuid",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico/893074e9-6b30-4d34-8a55-c6de306d6f75",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico",
+								"893074e9-6b30-4d34-8a55-c6de306d6f75"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Medico por especialidade",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico/porEspecialidade/GINECOLOGISTA",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico",
+								"porEspecialidade",
+								"GINECOLOGISTA"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Todos medicos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualiza medico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"crm\": \"123457-SP\",\r\n  \"nome\": \"Dr. João Silva Atualizado\",\r\n  \"especialidade\": \"GINECOLOGISTA\",\r\n  \"email\": \"joao.silva@hospital.com\",\r\n  \"telefone\": \"(11) 91234-5678\",\r\n  \"endereco\": {\r\n    \"logradouro\": \"Rua das Acácias\",\r\n    \"numero\": \"123\",\r\n    \"complemento\": \"Sala 45\",\r\n    \"cidade\": \"São Paulo\",\r\n    \"uf\": \"SP\",\r\n    \"cep\": \"01001-000\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico/893074e9-6b30-4d34-8a55-c6de306d6f75",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico",
+								"893074e9-6b30-4d34-8a55-c6de306d6f75"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Desativa cadastro medico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico/desativar/893074e9-6b30-4d34-8a55-c6de306d6f75",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico",
+								"desativar",
+								"893074e9-6b30-4d34-8a55-c6de306d6f75"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reativa cadastro medico",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico/reativar/893074e9-6b30-4d34-8a55-c6de306d6f75",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico",
+								"reativar",
+								"893074e9-6b30-4d34-8a55-c6de306d6f75"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Medico por uuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico/b867fde8-d0a8-4f1c-95d3-d025e2feab1f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico",
+								"b867fde8-d0a8-4f1c-95d3-d025e2feab1f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consulta",
+			"item": [
+				{
+					"name": "Nova consulta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"crmMedico\": \"123459-SP\",\r\n    \"cpfPaciente\": \"123.123.123-14\",\r\n    \"dataEHora\": \"2025-08-31T22:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/consulta",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar consulta",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/cancelar/684255ca-01df-4fd6-9bea-577fd5624665?motivoCancelamento=PACIENTE_AUSENTE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"cancelar",
+								"684255ca-01df-4fd6-9bea-577fd5624665"
+							],
+							"query": [
+								{
+									"key": "motivoCancelamento",
+									"value": "PACIENTE_AUSENTE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta por cpf",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/porPaciente/123.123.123-14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"porPaciente",
+								"123.123.123-14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta por crm e datas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/porMedico/123459-SP?dataInicial=2025-08-01",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"porMedico",
+								"123459-SP"
+							],
+							"query": [
+								{
+									"key": "dataInicial",
+									"value": "2025-08-01"
+								},
+								{
+									"key": "dataFinal",
+									"value": "2025-08-01",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta por uuid",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/consulta/6bdd07f2-cbb4-4ad3-af94-7f53ee028518",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"consulta",
+								"6bdd07f2-cbb4-4ad3-af94-7f53ee028518"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -14,4 +14,8 @@ public interface RepositorioDeAtendente {
     Atendente atualizarCadastroAtendente(UUID uuid, Atendente atendente);
 
     void deletarAtendentePorUuid(UUID uuid);
+
+    Optional<Atendente> filtrarAtendentePorEmail(String email);
+
+    Boolean validarEmail(String email);
 }

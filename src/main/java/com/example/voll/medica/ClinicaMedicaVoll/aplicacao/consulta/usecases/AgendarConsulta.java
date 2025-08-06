@@ -16,6 +16,7 @@ public class AgendarConsulta {
         if (repositorio.validarDataConsulta(consulta.getDataEHora())) {
             throw new CampoInvalidoExcecao("Ja existe consulta nessa data!");
         }
+        consulta.setDataEHora(consulta.getDataEHora());
         return repositorio.agendarConsulta(consulta);
     }
 }

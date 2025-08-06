@@ -23,10 +23,6 @@ public class Consulta {
             throw new IllegalArgumentException("CPF no formato incorreto!");
         }
 
-        if (LocalDateTime.now().isAfter(dataEHora)) {
-            throw new IllegalArgumentException("A consulta deve ser agendada numa data futura!");
-        }
-
         this.uuid = uuid != null ? uuid : UUID.randomUUID();
         this.crmMedico = crmMedico;
         this.cpfPaciente = cpfPaciente;
@@ -63,6 +59,9 @@ public class Consulta {
     }
 
     public void setDataEHora(LocalDateTime dataEHora) {
+        if (LocalDateTime.now().isAfter(dataEHora)) {
+            throw new IllegalArgumentException("A consulta deve ser agendada numa data futura!");
+        }
         this.dataEHora = dataEHora;
     }
 

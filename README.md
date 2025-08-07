@@ -65,7 +65,7 @@ Acesse:
 http://localhost:8080/swagger-ui/index.html
 
 ### 2. Postman
-O repositório inclui uma collection pronta para importar:
+O repositório inclui dois arquivos prontos para importar:
 - Arquivo: ClinicaMedicaVoll.postman_collection.json
 - Ambiente: ClinicaMedicaVoll.postman_environment.json
 

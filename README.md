@@ -15,6 +15,7 @@ O foco principal é a modelagem do domínio, utilizando uma linguagem ubíqua en
 - Spring Boot 3.5
 - Spring Data JPA
 - PostgreSQL
+- Spring Security com JWT (para autenticação)
 - Lombok
 - Swagger/OpenAPI
 - Maven Wrapper

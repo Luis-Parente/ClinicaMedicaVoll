@@ -24,8 +24,8 @@ O foco principal é a modelagem do domínio, utilizando uma linguagem ubíqua en
 
 ### 1. Clone o repositório:
 ````bash
-git clone https://github.com/Luis-Parente/PsychologySchedule
-cd PsychologySchedule
+git clone https://github.com/Luis-Parente/ClinicaMedicaVoll.git
+cd ClinicaMedicaVoll
 ````
 ### 2. Configure o banco de dados
 Certifique-se de que o PostgreSQL esteja rodando localmente e crie um banco de dados chamado medica_voll.
@@ -43,8 +43,40 @@ spring.datasource.username=seu_usuario
 spring.datasource.password=sua_senha
 ````
 É importante manter o nome do banco como medica_voll, a menos que você também atualize a URL de conexão conforme necessário.
-
-### 3.Run the application with:
+### 3. Construa o projeto
+````bash
+./mvnw clean install
+````
+### 4. Rode a aplicação
 ````bash
 ./mvnw spring-boot:run
 ````
+
+## 🔗 Endpoints e Testes
+- API Base URL: http://localhost:8080
+- Swagger UI: http://localhost:8080/swagger-ui/index.html
+- PostgreSQL: A conexão é feita com base nas configs do application.properties
+
+## 🔍 Testando a API
+Você pode testar de duas maneiras:
+### 1. Swagger UI
+Acesse:
+http://localhost:8080/swagger-ui/index.html
+
+### 2. Postman
+O repositório inclui uma collection pronta para importar:
+- Arquivo: ClinicaMedicaVoll.postman_collection.json
+- Ambiente: ClinicaMedicaVoll.postman_environment.json
+
+Como importar:
+- Abra o Postman
+- Vá em File > Import
+- Selecione os arquivos .json do repositório
+- Você pode então enviar requisições diretamente usando os endpoints e dados pré-configurados.
+
+## ✅ Funcionalidades principais
+- Login de atendentes
+- Cadastro completo de médicos (com especialidade, CRM, endereço, status)
+- Cadastro de pacientes (com CPF, email e endereço obrigatórios)
+- Agendamento de consultas (médico, paciente, data e horário)
+- Cancelamento de consultas com motivo (ex: paciente não compareceu)

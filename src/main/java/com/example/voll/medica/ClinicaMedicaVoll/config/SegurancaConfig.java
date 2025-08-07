@@ -25,6 +25,8 @@ public class SegurancaConfig {
         httpSecurity.authorizeHttpRequests(auth -> {
             auth.requestMatchers(HttpMethod.POST, "/atendente/login").permitAll();
             auth.requestMatchers(HttpMethod.POST, "/atendente").hasRole("ADMIN");
+            auth.requestMatchers("/swagger-ui/**").permitAll();
+            auth.requestMatchers("/v3/**").permitAll();
             auth.anyRequest().authenticated();
         });
         httpSecurity.addFilterBefore(filtroDeSeguranca, UsernamePasswordAuthenticationFilter.class);

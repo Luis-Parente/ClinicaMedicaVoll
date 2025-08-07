@@ -36,7 +36,7 @@ CREATE DATABASE medica_voll;
 ````
 ⚠️ As credenciais e demais configurações de acesso ao banco de dados devem ser informadas no arquivo application.properties.
 #### 📄 Exemplo de configuração:
-O projeto inclui um arquivo chamado application-model.properties, que serve como modelo para sua configuração local.
+O projeto inclui um arquivo chamado MODELO-application.properties, que serve como modelo para sua configuração local.
 Basta copiá-lo e renomear para application.properties, e então ajustar com os dados do seu ambiente:
 ````properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/medica_voll

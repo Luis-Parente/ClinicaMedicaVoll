@@ -1,8 +1,8 @@
 # ClinicaMedicaVoll
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://github.com/Luis-Parente/ClinicaMedicaVoll/blob/main/LICENSE)
 
-Este projeto foi desenvolvido como parte do desafio proposto pela Alura para aplicar os conceitos de Domain-Driven Design (DDD) e Clean Architecture.
-Trata-se de um sistema para uma clínica médica, com funcionalidades como login de atendentes, cadastro de médicos e pacientes, além de agendamento e cancelamento de consultas.
+Este projeto foi desenvolvido como parte do desafio proposto pela Alura para aplicar os conceitos de Domain-Driven Design (DDD) e Clean Architecture. Trata-se de um sistema para uma clínica médica, com funcionalidades como login de atendentes, cadastro de médicos e pacientes, além de agendamento e cancelamento de consultas.
+
 O foco principal é a modelagem do domínio, utilizando uma linguagem ubíqua entre o especialista de negócio e o software.
 
 ## 📋 Requisitos

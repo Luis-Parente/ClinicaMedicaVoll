@@ -1,6 +1,7 @@
 package com.example.voll.medica.ClinicaMedicaVoll.aplicacao.medico.usecases;
 
 import com.example.voll.medica.ClinicaMedicaVoll.aplicacao.medico.gateway.RepositorioDeMedico;
+import com.example.voll.medica.ClinicaMedicaVoll.dominio.medico.Medico;
 
 import java.util.UUID;
 
@@ -16,7 +17,8 @@ public class DesativarCadastroMedico {
     }
 
     public void desativarMedico(UUID uuid) {
-        buscarMedico.findByUuid(uuid);
-        repositorio.desativarCadastroMedico(uuid);
+        Medico medico = buscarMedico.findByUuid(uuid);
+        medico.desativarCadastro();
+        repositorio.salvarMedico(medico);
     }
 }

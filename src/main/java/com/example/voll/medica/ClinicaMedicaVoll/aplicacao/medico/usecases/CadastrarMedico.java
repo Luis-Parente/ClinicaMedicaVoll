@@ -16,6 +16,6 @@ public class CadastrarMedico {
         if (repositorio.validarCrmMedico(medico.getCrm())) {
             throw new CampoInvalidoExcecao("Já existe medico com esse CRM!");
         }
-        return repositorio.cadastrarMedico(medico);
+        return repositorio.salvarMedico(medico);
     }
 }

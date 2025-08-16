@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public interface RepositorioDeMedico {
 
-    Medico cadastrarMedico(Medico medico);
+    Medico salvarMedico(Medico medico);
 
     Boolean validarCrmMedico(String crm);
 
@@ -18,12 +18,6 @@ public interface RepositorioDeMedico {
     List<Medico> filtrarMedicosPorEspecialidade(Especialidade especialidade);
 
     Optional<Medico> filtrarMedicoPorUuid(UUID uuid);
-
-    Medico atualizarCadastroMedico(UUID uuid, Medico medico);
-
-    void desativarCadastroMedico(UUID uuid);
-
-    void reativarCadastroMedico(UUID uuid);
 
     void deletarMedico(UUID uuid);
 }

@@ -16,8 +16,14 @@ public class AtualizarMedico {
         this.buscarMedico = buscarMedico;
     }
 
-    public Medico atualizarDadosMedico(UUID uuid, Medico medico) {
-        buscarMedico.findByUuid(uuid);
-        return repositorio.atualizarCadastroMedico(uuid, medico);
+    public Medico atualizarDadosMedico(UUID uuid, Medico medicoAtualizado) {
+        Medico medico = buscarMedico.findByUuid(uuid);
+        medico.setCrm(medicoAtualizado.getCrm());
+        medico.setNome(medicoAtualizado.getNome());
+        medico.setEspecialidade(medicoAtualizado.getEspecialidade());
+        medico.setEmail(medicoAtualizado.getEmail());
+        medico.setTelefone(medicoAtualizado.getTelefone());
+        medico.setEndereco(medicoAtualizado.getEndereco());
+        return repositorio.salvarMedico(medico);
     }
 }

@@ -19,10 +19,9 @@ public class RepositorioDeMedicoJpaAdapter implements RepositorioDeMedico {
     }
 
     @Override
-    public Medico cadastrarMedico(Medico medico) {
+    public Medico salvarMedico(Medico medico) {
         MedicoEntidade entidade = MedicoJpaMapper.paraEntidade(medico);
-        repositorio.save(entidade);
-        return MedicoJpaMapper.paraDominio(entidade);
+        return MedicoJpaMapper.paraDominio(repositorio.save(entidade));
     }
 
     @Override
@@ -43,30 +42,6 @@ public class RepositorioDeMedicoJpaAdapter implements RepositorioDeMedico {
     @Override
     public Optional<Medico> filtrarMedicoPorUuid(UUID uuid) {
         return repositorio.findById(uuid).map(MedicoJpaMapper::paraDominio);
-    }
-
-    @Override
-    public Medico atualizarCadastroMedico(UUID uuid, Medico medico) {
-        MedicoEntidade entidade = MedicoJpaMapper.paraEntidade(medico);
-        entidade.setUuid(uuid);
-        repositorio.save(entidade);
-        return MedicoJpaMapper.paraDominio(entidade);
-    }
-
-    @Override
-    public void desativarCadastroMedico(UUID uuid) {
-        Optional<Medico> dominio = filtrarMedicoPorUuid(uuid);
-        MedicoEntidade entidade = MedicoJpaMapper.paraEntidade(dominio.get());
-        entidade.setAtivo(false);
-        repositorio.save(entidade);
-    }
-
-    @Override
-    public void reativarCadastroMedico(UUID uuid) {
-        Optional<Medico> dominio = filtrarMedicoPorUuid(uuid);
-        MedicoEntidade entidade = MedicoJpaMapper.paraEntidade(dominio.get());
-        entidade.setAtivo(true);
-        repositorio.save(entidade);
     }
 
     @Override

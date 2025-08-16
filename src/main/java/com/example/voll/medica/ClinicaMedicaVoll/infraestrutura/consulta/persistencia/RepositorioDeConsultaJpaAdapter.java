@@ -21,23 +21,14 @@ public class RepositorioDeConsultaJpaAdapter implements RepositorioDeConsulta {
     }
 
     @Override
-    public Consulta agendarConsulta(Consulta dominio) {
+    public Consulta salvarConsulta(Consulta dominio) {
         ConsultaEntidade entidade = ConsultaJpaMapper.paraEntidade(dominio);
-        repositorio.save(entidade);
-        return ConsultaJpaMapper.paraDominio(entidade);
+        return ConsultaJpaMapper.paraDominio(repositorio.save(entidade));
     }
 
     @Override
     public Boolean validarDataConsulta(LocalDateTime dataEHora) {
         return repositorio.verificaData(dataEHora);
-    }
-
-    @Override
-    public void cancelarConsulta(UUID uuid, StatusConsulta motivoCancelamento) {
-        Optional<Consulta> dominio = filtrarConsultaPorUuid(uuid);
-        ConsultaEntidade entidade = ConsultaJpaMapper.paraEntidade(dominio.get());
-        entidade.setStatus(motivoCancelamento);
-        repositorio.save(entidade);
     }
 
     @Override

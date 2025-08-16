@@ -11,11 +11,9 @@ import java.util.UUID;
 
 public interface RepositorioDeConsulta {
 
-    Consulta agendarConsulta(Consulta dominio);
+    Consulta salvarConsulta(Consulta dominio);
 
     Boolean validarDataConsulta(LocalDateTime dataEHora);
-
-    void cancelarConsulta(UUID uuid, StatusConsulta motivoCancelamento);
 
     Optional<Consulta> filtrarConsultaPorUuid(UUID uuid);
 

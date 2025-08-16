@@ -16,6 +16,6 @@ public class CadastrarPaciente {
         if (repositorio.validarCpfPaciente(paciente.getCpf())) {
             throw new CampoInvalidoExcecao("Já existe paciente com esse CPF!");
         }
-        return repositorio.cadastrarPaciente(paciente);
+        return repositorio.salvarPaciente(paciente);
     }
 }

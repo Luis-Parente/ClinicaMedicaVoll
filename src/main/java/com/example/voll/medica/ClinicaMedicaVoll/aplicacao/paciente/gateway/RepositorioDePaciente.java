@@ -7,13 +7,11 @@ import java.util.UUID;
 
 public interface RepositorioDePaciente {
 
-    Paciente cadastrarPaciente(Paciente paciente);
+    Paciente salvarPaciente(Paciente paciente);
 
     Boolean validarCpfPaciente(String cpf);
 
     Optional<Paciente> filtrarPacientePorCpf(UUID uuid);
-
-    Paciente atualizarCadastroPaciente(UUID uuid, Paciente paciente);
 
     void deletarPaciente(UUID uuid);
 }

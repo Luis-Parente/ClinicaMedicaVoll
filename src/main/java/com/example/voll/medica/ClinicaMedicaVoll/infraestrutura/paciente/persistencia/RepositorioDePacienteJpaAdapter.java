@@ -17,10 +17,9 @@ public class RepositorioDePacienteJpaAdapter implements RepositorioDePaciente {
     }
 
     @Override
-    public Paciente cadastrarPaciente(Paciente dominio) {
+    public Paciente salvarPaciente(Paciente dominio) {
         PacienteEntidade entidade = PacienteJpaMapper.paraEntidade(dominio);
-        repositorio.save(entidade);
-        return PacienteJpaMapper.paraDominio(entidade);
+        return PacienteJpaMapper.paraDominio(repositorio.save(entidade));
     }
 
     @Override
@@ -31,14 +30,6 @@ public class RepositorioDePacienteJpaAdapter implements RepositorioDePaciente {
     @Override
     public Optional<Paciente> filtrarPacientePorCpf(UUID uuid) {
         return repositorio.findById(uuid).map(PacienteJpaMapper::paraDominio);
-    }
-
-    @Override
-    public Paciente atualizarCadastroPaciente(UUID uuid, Paciente dominio) {
-        PacienteEntidade entidade = PacienteJpaMapper.paraEntidade(dominio);
-        entidade.setUuid(uuid);
-        repositorio.save(entidade);
-        return PacienteJpaMapper.paraDominio(entidade);
     }
 
     @Override

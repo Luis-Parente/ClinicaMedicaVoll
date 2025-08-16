@@ -16,8 +16,13 @@ public class AtualizarPaciente {
         this.buscarPaciente = buscarPaciente;
     }
 
-    public Paciente atualizarDadosPaciente(UUID uuid, Paciente paciente) {
-        buscarPaciente.findByUuid(uuid);
-        return repositorio.atualizarCadastroPaciente(uuid, paciente);
+    public Paciente atualizarDadosPaciente(UUID uuid, Paciente pacienteAtualizado) {
+        Paciente paciente = buscarPaciente.findByUuid(uuid);
+        paciente.setCpf(pacienteAtualizado.getCpf());
+        paciente.setNome(pacienteAtualizado.getNome());
+        paciente.setEmail(pacienteAtualizado.getEmail());
+        paciente.setTelefone(pacienteAtualizado.getTelefone());
+        paciente.setEndereco(pacienteAtualizado.getEndereco());
+        return repositorio.salvarPaciente(paciente);
     }
 }

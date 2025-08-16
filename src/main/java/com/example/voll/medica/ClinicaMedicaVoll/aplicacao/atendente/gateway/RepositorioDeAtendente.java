@@ -7,11 +7,9 @@ import java.util.UUID;
 
 public interface RepositorioDeAtendente {
 
-    Atendente cadastrarAtendente(Atendente atendente);
+    Atendente salvarAtendente(Atendente atendente);
 
     Optional<Atendente> filtrarAtendentePorUuid(UUID uuid);
-
-    Atendente atualizarCadastroAtendente(UUID uuid, Atendente atendente);
 
     void deletarAtendentePorUuid(UUID uuid);
 

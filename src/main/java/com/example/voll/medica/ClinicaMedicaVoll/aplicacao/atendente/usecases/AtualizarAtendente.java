@@ -21,9 +21,12 @@ public class AtualizarAtendente {
         this.criptografarSenha = criptografarSenha;
     }
 
-    public Atendente atualizarDadosAtendente(UUID uuid, Atendente atendente) {
-        buscarAtendente.findByUuid(uuid);
+    public Atendente atualizarDadosAtendente(UUID uuid, Atendente atendenteAtualizado) {
+        Atendente atendente = buscarAtendente.findByUuid(uuid);
+        atendente.setNome(atendenteAtualizado.getNome());
+        atendente.setEmail(atendenteAtualizado.getEmail());
         atendente.setSenha(criptografarSenha.criptografarSenha(atendente.getSenha()));
-        return repositorio.atualizarCadastroAtendente(uuid, atendente);
+        atendente.setNivelDeAcesso(atendenteAtualizado.getNivelDeAcesso());
+        return repositorio.salvarAtendente(atendente);
     }
 }

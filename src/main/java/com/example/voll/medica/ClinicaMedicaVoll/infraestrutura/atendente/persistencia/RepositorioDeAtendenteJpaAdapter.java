@@ -20,24 +20,15 @@ public class RepositorioDeAtendenteJpaAdapter implements RepositorioDeAtendente,
     }
 
     @Override
-    public Atendente cadastrarAtendente(Atendente atendente) {
+    public Atendente salvarAtendente(Atendente atendente) {
         AtendenteEntidade entidade = AtendenteJpaMapper.paraEntidade(atendente);
-        repositorio.save(entidade);
-        return AtendenteJpaMapper.paraDominio(entidade);
+        return AtendenteJpaMapper.paraDominio(repositorio.save(entidade));
     }
 
     @Override
     public Optional<Atendente> filtrarAtendentePorUuid(UUID uuid) {
         return repositorio.findById(uuid)
                 .map(AtendenteJpaMapper::paraDominio);
-    }
-
-    @Override
-    public Atendente atualizarCadastroAtendente(UUID uuid, Atendente atendente) {
-        AtendenteEntidade entidade = AtendenteJpaMapper.paraEntidade(atendente);
-        entidade.setUuid(uuid);
-        repositorio.save(entidade);
-        return AtendenteJpaMapper.paraDominio(entidade);
     }
 
     @Override

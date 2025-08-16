@@ -20,6 +20,6 @@ public class CadastrarAtendente {
         if (repositorio.validarEmail(atendente.getEmail()))
             throw new CampoInvalidoExcecao("E-mail já utilizado");
         atendente.setSenha(criptografarSenha.criptografarSenha(atendente.getSenha()));
-        return repositorio.cadastrarAtendente(atendente);
+        return repositorio.salvarAtendente(atendente);
     }
 }
